@@ -40,7 +40,7 @@ winform.btnInstall.oncommand = function(id,event){
 	
 	var haha = process.plink(  
 	    ,"-l","root"
-	    ,"-pw","Yanjiao30@2015"
+	    ,"-pw",""
 	    ,"-P","22","10.63.9.30" 
 	    /*,"-m",io.fullpath("/¸ü¶àshellÃüÁî.txt")*/
 	    ,"export LANG=en_US
