@@ -1,0 +1,54 @@
+//theme 外观主题
+namespace theme{
+	button = {
+		background = { 
+			hover = "/res/button-hover.png";
+			active = "/res/button-active.png";
+			default = "/res/button-disabled.png"; 
+		}	
+	}
+	close = {
+		background = { 
+			hover = "/res/close-hover.png";
+			active = "/res/close-active.png";
+			default = "/res/close-default.png"; 
+		}
+	}
+	min = {
+		background = { 
+			hover = "/res/min-hover.png";
+			active = "/res/min-active.png"; 
+			default = "/res/min-default.png"; 
+		}
+	}
+	checkbox = {
+		checked = { //选中状态的样式
+			foreground = { //前景图样式
+				default = "/res/check1.png";//默认状态
+				hover = "/res/check-hover1.png"; //鼠标移上去的状态
+				active = "/res/check-active1.png";//鼠标按下去的状态
+				disabled = "/res/check-disabled1.png";//控件禁用时的状态 
+			}
+		}
+		foreground = { //前景图样式
+			default = "/res/uncheck1.png";//默认状态
+			hover = "/res/uncheck-hover1.png"; //鼠标移上去的状态
+			active = "/res/uncheck-active1.png";//鼠标按下去的状态
+			disabled = "/res/uncheck-disabled1.png"; //控件禁用时的状态 
+		}
+	}  
+	hyperlink = {
+		color = {  
+        	hover = 0xFFFF0000;  
+        	active = 0xFF00FF00;  
+    	} 
+	}
+}
+
+/**intellisense(theme)
+button = 按钮
+close = 关闭按钮
+min = 最小化按钮
+checkbox = 复选框
+hyperlink = 超链接
+end intellisense**/

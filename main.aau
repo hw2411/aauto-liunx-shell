@@ -1,0 +1,123 @@
+import win.ui;
+/*DSG{{*/
+var winform = ..win.form(text="阿里云ubuntu web环境自动安装工具";right=563;bottom=342;image=$"\res\form-background.jpg";bkBottom=5;bkLeft=0;bkRight=0;bkTop=11;border="none";exmode="none";mode="popup";parent=...)
+winform.add(
+btnClose={cls="plus";left=520;top=0;right=551;bottom=25;background="\res\close-default.png";clip=1;dr=1;dt=1;font=LOGFONT( name='宋体' );notify=1;repeat="scale";transparent=1;z=6};
+btnInstall={cls="plus";text="开始安装";left=274;top=37;right=354;bottom=74;background="\res\button-disabled.png";bkBottom=7;bkLeft=7;bkRight=7;bkTop=7;clipBk=false;db=1;dr=1;foreRepeat="tile";notify=1;paddingBottom=2;tabstop=1;z=7};
+btnMin={cls="plus";left=497;top=0;right=528;bottom=25;background="\res\min-default.png";dr=1;dt=1;font=LOGFONT( name='宋体' );notify=1;repeat="scale";transparent=1;z=5};
+btnPutty={cls="plus";text="putty登录";left=366;top=37;right=446;bottom=74;background="\res\button-disabled.png";bkBottom=7;bkLeft=7;bkRight=7;bkTop=7;clipBk=false;db=1;dr=1;foreRepeat="tile";notify=1;paddingBottom=2;tabstop=1;z=11};
+chkApache={cls="plus";text="安装 apache";left=275;top=12;right=372;bottom=31;align="left";checked=1;color=15793151;foreground="\res\check1.png";notify=1;paddingLeft=21;y=1;z=12};
+chkNginx={cls="plus";text="安装nginx";left=376;top=13;right=462;bottom=31;align="left";color=15793151;foreground="\res\uncheck1.png";notify=1;paddingLeft=21;y=1;z=13};
+editConsole={cls="richedit";left=14;top=78;right=545;bottom=320;bgcolor=16777215;hscroll=1;multiline=1;vscroll=1;z=10};
+editHostName={cls="edit";text="10.63.9.30";left=112;top=19;right=241;bottom=36;bgcolor=16777215;clipch=1;db=1;dr=1;font=LOGFONT( name='宋体' );hidesel=1;multiline=1;tabstop=1;z=3};
+editPassword={cls="edit";text="Yanjiao30@2015";left=112;top=50;right=241;bottom=67;bgcolor=16777215;db=1;dr=1;font=LOGFONT( name='宋体' );hidesel=1;multiline=1;password=1;tabstop=1;z=9};
+lnkWebsite={cls="plus";text="点这里查看详细说明";left=359;top=322;right=530;bottom=339;color=65535;notify=1;z=14};
+plus3={cls="plus";left=82;top=13;right=252;bottom=39;background="\res\textbox-username.png";bgcolor=15793151;bkBottom=4;bkRight=11;bkTop=2;clipch=1;z=1};
+plus4={cls="plus";left=82;top=43;right=252;bottom=69;background="\res\textbox-password.png";bkBottom=2;bkRight=13;z=2};
+static={cls="static";text="服务器IP：";left=10;top=19;right=80;bottom=36;align="right";db=1;dr=1;transparent=1;z=4};
+static4={cls="static";text="ROOT密码：";left=8;top=49;right=79;bottom=66;align="right";db=1;dr=1;notify=1;transparent=1;z=8}
+)
+/*}}*/
+
+import process.pscp;
+import process.plink;
+winform.btnInstall.oncommand = function(id,event){
+ 
+	if(!#winform.editHostName.text){
+		winform.msgboxErr("请指定正确的服务器IP") 
+		return;
+	}
+	if(!#winform.editPassword.text){
+		winform.msgboxErr("请指定正确的登录密码(root密码)") 
+		return;
+	} 
+	winform.btnInstall.disabled = true;
+	winform.chkNginx.disabled = true;
+	winform.chkApache.disabled = true;
+	
+	winform.editConsole.limit = 0x2800;//设置日志缓冲区大小
+	
+	
+	var haha = process.plink(  
+	    ,"-l","root"
+	    ,"-pw","Yanjiao30@2015"
+	    ,"-P","22","10.63.9.30" 
+	    /*,"-m",io.fullpath("/更多shell命令.txt")*/
+	    ,"export LANG=en_US
+	    df -h
+	    echo 'haha'
+	    pwd"
+	    )
+		haha.logger = winform.editConsole;
+    		
+    	haha.logResponse()
+    	winform.msgboxErr(winform.editConsole.text ) 
+		haha.close(); 
+	
+	winform.btnInstall.disabled = false;
+	winform.chkNginx.disabled = false;
+	winform.chkApache.disabled = false;
+}
+
+winform.onClose = function(hwnd,message,wParam,lParam){
+    process.plink.terminate();//关闭所有plink进程
+}
+
+import process.putty;
+winform.btnPutty.oncommand = function(id,event){
+	process.putty(winform.editHostName.text,winform.editPassword.text)
+} 
+
+winform.btnClose.oncommand = function(id,event){
+	winform.close()
+} 
+
+winform.btnMin.oncommand = function(id,event){
+	winform.hitmin()
+} 
+
+winform.chkNginx.oncommand = function(id,event){
+	winform.chkApache.checked = !owner.checked;
+} 
+
+winform.chkApache.oncommand = function(id,event){
+	winform.chkNginx.checked = !owner.checked;	
+}
+
+import process;
+winform.lnkWebsite.oncommand = function(id,event){
+	process.execute("http://help.aliyun.com/manual?spm=0.0.0.0.WFxdBi&helpId=129");
+}
+
+winform.wndproc = {
+	[ 0x201/*_WM_LBUTTONDOWN*/ ] = function(hwnd,message,wParam,lParam){
+		winform.hitCaption();
+	}
+}
+
+//创建圆角窗体
+import win.region.round;
+win.region.round(winform)  
+
+winform.isDialogMessage = function(hwnd,msg){
+
+    if(  msg.wParam == 0xD/*_VK_RETURN*/ ){
+        msg.hwnd = winform.btnInstall.hwnd;//回车触发该按钮
+        return;
+    }
+    return win.isDialogMessage(hwnd,msg);
+}
+
+//设置控件外观
+import theme;
+winform.btnInstall.skin( theme.button )
+winform.btnPutty.skin( theme.button )
+winform.chkNginx.skin( theme.checkbox )
+winform.chkApache.skin( theme.checkbox )
+winform.btnMin.skin( theme.min )
+winform.btnClose.skin( theme.close )
+winform.lnkWebsite.skin( theme.hyperlink )
+winform.chkNginx.checked = true;
+
+winform.show() 
+win.loopMessage();

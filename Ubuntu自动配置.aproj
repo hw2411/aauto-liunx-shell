@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="gb2312"?>
+<project ver="0.60" name="自动配置ubuntu" libEmbed="true" icon="app.ico" ui="win" output="shell.exe" CompanyName="单位名称" FileDescription="附加说明......" LegalCopyright="Copyright (C) 作者 2011" ProductName="快手工程15" InternalName="快手工程15" FileVersion="0.0.1.13" ProductVersion="0.0.1.13" publishDir="/Publish/">
+	<file name="sh.7z" path="sh.7z" comment="sh.7z"/>
+	<file name="main.aau" path="main.aau"/>
+	<folder name="资源文件" path="res" embed="true">
+		<file name="uncheck1.png" path="res\uncheck1.png" comment="res\uncheck1.png"/>
+		<file name="uncheck-hover1.png" path="res\uncheck-hover1.png" comment="res\uncheck-hover1.png"/>
+		<file name="uncheck-disabled1.png" path="res\uncheck-disabled1.png" comment="res\uncheck-disabled1.png"/>
+		<file name="uncheck-active1.png" path="res\uncheck-active1.png" comment="res\uncheck-active1.png"/>
+		<file name="textbox-username.png" path="res\textbox-username.png" comment="res\textbox-username.png"/>
+		<file name="textbox-password.png" path="res\textbox-password.png" comment="res\textbox-password.png"/>
+		<file name="min-hover.png" path="res\min-hover.png" comment="res\min-hover.png"/>
+		<file name="min-default.png" path="res\min-default.png" comment="res\min-default.png"/>
+		<file name="min-active.png" path="res\min-active.png" comment="res\min-active.png"/>
+		<file name="max-hover.png" path="res\max-hover.png" comment="res\max-hover.png"/>
+		<file name="max-default.png" path="res\max-default.png" comment="res\max-default.png"/>
+		<file name="max-active.png" path="res\max-active.png" comment="res\max-active.png"/>
+		<file name="form-background.jpg" path="res\form-background.jpg" comment="res\form-background.jpg"/>
+		<file name="close-normal.png" path="res\close-normal.png" comment="res\close-normal.png"/>
+		<file name="close-hover.png" path="res\close-hover.png" comment="res\close-hover.png"/>
+		<file name="close-default.png" path="res\close-default.png" comment="res\close-default.png"/>
+		<file name="close-active.png" path="res\close-active.png" comment="res\close-active.png"/>
+		<file name="checked-hover.png" path="res\checked-hover.png" comment="res\checked-hover.png"/>
+		<file name="checked-default.png" path="res\checked-default.png" comment="res\checked-default.png"/>
+		<file name="checked-active.png" path="res\checked-active.png" comment="res\checked-active.png"/>
+		<file name="check1.png" path="res\check1.png" comment="res\check1.png"/>
+		<file name="check-hover1.png" path="res\check-hover1.png" comment="res\check-hover1.png"/>
+		<file name="check-disabled1.png" path="res\check-disabled1.png" comment="res\check-disabled1.png"/>
+		<file name="check-active1.png" path="res\check-active1.png" comment="res\check-active1.png"/>
+		<file name="button-hover.png" path="res\button-hover.png" comment="res\button-hover.png"/>
+		<file name="button-disabled.png" path="res\button-disabled.png" comment="res\button-disabled.png"/>
+		<file name="button-active.png" path="res\button-active.png" comment="res\button-active.png"/>
+	</folder>
+</project>
